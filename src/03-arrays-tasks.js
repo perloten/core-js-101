@@ -34,8 +34,8 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  return Array(len).fill().map((e, i) => i * 2 + 1);
 }
 
 /**
@@ -196,8 +196,8 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  return arr.join('\n');
 }
 
 /**
@@ -229,8 +229,14 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
+function getMovingSum(arr) {
+  const result = [];
+  const total = arr.reduce((acc, current) => {
+    result.push(acc);
+    return acc + current;
+  });
+  result.push(total);
+  return result;
 }
 
 /**
@@ -553,8 +559,15 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  const part = Math.floor(arr.length / 2);
+  let tail = arr.slice(arr.length - part, arr.length);
+  if (arr.length % 2 === 1) tail = tail.concat(arr[part]);
+  let sec = [];
+  if (arr.length % 2 === 0) sec = arr.slice(0, arr.length - part);
+  if (arr.length % 2 === 1) sec = arr.slice(0, arr.length - part - 1);
+  const first = tail.concat(sec);
+  return first;
 }
 
 module.exports = {
